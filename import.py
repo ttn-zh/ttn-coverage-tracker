@@ -36,8 +36,8 @@ def main(argv):
 
 
 def import_new_features(node_eui, geojson_file):
-    feature_hashes = load_features(geojson_file)
-    features = []
+    features = load_features(geojson_file)
+    feature_hashes = set([x['properties']['hash'] for x in features])
 
     for feature in get_new_geojson_features(node_eui, lambda x : x['properties']['hash'] in feature_hashes):
         gateway_eui = feature['properties']['gateway_eui']
@@ -52,10 +52,10 @@ def import_new_features(node_eui, geojson_file):
 
 def load_features(geojson_file):
     if not os.path.isfile(geojson_file):
-        return set()
+        return []
 
     collection = geojson.loads(open(geojson_file, 'r').read())
-    return set([x['properties']['hash'] for x in collection.features])
+    return collection.features
 
 def get_new_geojson_features(node_eui, already_exists_predicate):
     offset = 0
