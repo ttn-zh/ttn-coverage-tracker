@@ -1,25 +1,17 @@
+import parser
+
 import geojson
-
 import os.path
-import operator
-
-from functools import reduce
 
 gateway_marker_symbols = {}
 
 
-def dms2decimal(degrees, minutes, seconds):
-    op = operator.__add__ if degrees >= 0 else operator.__sub__
-    return reduce(op, [degrees, float(minutes)/60, float(seconds)/3600])
-
-
 def build(data_point):
-    # Convert raw coordinate encoding into DMS and then decimal
-    raw_coords = data_point['data_plain']
-    lat = dms2decimal(int(raw_coords[0:2]), int(raw_coords[2:4]) + int(raw_coords[4:7])/1000, 0)
-    lon = dms2decimal(int(raw_coords[7:8]), int(raw_coords[8:10]) + int(raw_coords[10:])/1000, 0)
+    coords = parser.get_coords(data_point)
+    if coords is None:
+        raise ValueError("No GPS data")
 
-    point = geojson.Point((lon, lat))
+    point = geojson.Point(coords)
     props = dict(hash=data_point['hash'], time=data_point['time'],
                  gateway_eui=data_point['gateway_eui'], snr=data_point['snr'],
                  rssi=data_point['rssi'], data_rate=data_point['datarate'])

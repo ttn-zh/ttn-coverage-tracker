@@ -5,6 +5,7 @@ class CoverageMap:
     def __init__(self, node_eui):
         self.file = 'maps/%s.json' % node_eui
         self.features = features.load(self.file)
+        self.all_nodes = features.load('maps/all_nodes.json')
         self.hashes = set([x['properties']['hash'] for x in self.features])
         self.gateways = {}
 
@@ -18,11 +19,13 @@ class CoverageMap:
             self.gateways[eui] = features.load('maps/%s.json' % eui)
 
         self.features.append(feature)
+        self.all_nodes.append(feature)
         self.hashes.add(feature['properties']['hash'])
         self.gateways[eui].append(feature)
 
     def save_all(self):
         features.dump(self.file, self.features)
+        features.dump('maps/all_nodes.json', self.all_nodes)
 
         for eui in self.gateways:
             features.dump('maps/%s.json' % eui, self.gateways[eui])
