@@ -134,12 +134,12 @@ def get_marker_symbol(data_point):
     return symbol
 
 def get_marker_color(data_point):
+    color = '#7d8182'  # default to grey
+
     try:
         rssi = float(data_point['rssi'])
     except:
         return color
-
-    color = '#7d8182'  # default to grey
 
     if rssi < 0 and rssi >= -70:
         color = '#005a32'
