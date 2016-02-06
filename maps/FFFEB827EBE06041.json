@@ -1,0 +1,25 @@
+{
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    8.496516666666666,
+                    47.40465
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF7BW125",
+                "gateway_eui": "FFFEB827EBE06041",
+                "hash": "e8c02334fa77363988d6bda86148fc2e744824d7",
+                "marker-color": "#addd8e",
+                "marker-symbol": "c",
+                "rssi": -114,
+                "snr": -1.5,
+                "time": "2016-02-03T18:13:00.709Z"
+            },
+            "type": "Feature"
+        }
+    ],
+    "type": "FeatureCollection"
+}

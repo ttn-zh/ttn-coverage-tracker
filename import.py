@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from coverage_map import CoverageMap
+
 import rest_api
 import features
 
@@ -13,26 +15,16 @@ MAX_API_CALLS = 10
 logger = logging.getLogger(__name__)
 
 
-def import_new_features(node_eui, exclude_list, geojson_file):
-    features_by_node = features.load(geojson_file)
-    features_by_gateway = []
-    feature_hashes = set([x['properties']['hash'] for x in features_by_node])
+def import_new_features(node_eui, exclude_list):
+    coverage = CoverageMap(node_eui)
 
-    def exists_predicate(data):
-        return data['properties']['hash'] in feature_hashes
+    for feature in get_new_features(node_eui, exclude_list, coverage.exists):
+        coverage.add(feature)
 
-    for feature in get_new_geojson_features(node_eui, exists_predicate):
-        gateway_eui = feature['properties']['gateway_eui']
-        if gateway_eui in exclude_list:
-            continue
-
-        features_by_node.append(feature)
-        feature_hashes.add(feature['properties']['hash'])
-
-    features.dump(geojson_file, features_by_node)
+    coverage.save_all()
 
 
-def get_new_geojson_features(node_eui, already_exists_predicate):
+def get_new_features(node_eui, exclude_list, already_exists_predicate):
     offset = 0
     api_calls = 0
 
@@ -44,6 +36,10 @@ def get_new_geojson_features(node_eui, already_exists_predicate):
         for data_point in api_result:
             try:
                 count += 1
+
+                if data_point['gateway_eui'] in exclude_list:
+                    continue
+
                 feature = features.build(data_point)
                 if already_exists_predicate(feature):
                     logger.info('Found last imported data point, stopping.')
@@ -85,10 +81,7 @@ def main():
     logging.basicConfig(level=loglevel)
     coloredlogs.install()
 
-    node_eui = args.node_eui
-
-    geojson_file = 'maps/%s.json' % node_eui
-    import_new_features(node_eui, args.exclude, geojson_file)
+    import_new_features(args.node_eui, args.exclude)
 
 
 if __name__ == "__main__":

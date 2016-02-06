@@ -1,0 +1,85 @@
+{
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    8.551816666666667,
+                    47.4237
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF7BW125",
+                "gateway_eui": "FFFEB827EB5631EE",
+                "hash": "cfd31f7b096a7e16553389268c612e9f30166089",
+                "marker-color": "#78c679",
+                "marker-symbol": "d",
+                "rssi": -105,
+                "snr": -2.2,
+                "time": "2016-01-11T15:35:42.494Z"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.554433333333334,
+                    47.426316666666665
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF7BW125",
+                "gateway_eui": "FFFEB827EB5631EE",
+                "hash": "15d4a77ea2cc7cf5ef10b42aa189fe19a0f89935",
+                "marker-color": "#78c679",
+                "marker-symbol": "d",
+                "rssi": -107,
+                "snr": -7.2,
+                "time": "2016-01-11T15:30:42.486Z"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.556416666666667,
+                    47.425666666666665
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF7BW125",
+                "gateway_eui": "FFFEB827EB5631EE",
+                "hash": "5295380e301e09f2153eab16157272ade410e961",
+                "marker-color": "#78c679",
+                "marker-symbol": "d",
+                "rssi": -107,
+                "snr": -6.5,
+                "time": "2016-01-11T15:27:42.484Z"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.555383333333333,
+                    47.426
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF7BW125",
+                "gateway_eui": "FFFEB827EB5631EE",
+                "hash": "81eb25d3d220a35fc413355eeb66a9dc6c7970d8",
+                "marker-color": "#78c679",
+                "marker-symbol": "d",
+                "rssi": -106,
+                "snr": -5.5,
+                "time": "2016-01-11T15:26:42.490Z"
+            },
+            "type": "Feature"
+        }
+    ],
+    "type": "FeatureCollection"
+}
