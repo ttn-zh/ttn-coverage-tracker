@@ -10,7 +10,7 @@ import coloredlogs
 import argparse
 import time
 
-MAX_API_CALLS = 10
+MAX_API_CALLS = 50
 
 logger = logging.getLogger(__name__)
 
