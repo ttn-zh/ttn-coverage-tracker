@@ -1,4 +1,17 @@
 import features
+import math
+
+
+def distance_on_km(lat1, long1, lat2, long2):
+    degrees_to_radians = math.pi/180.0
+    phi1 = (90.0 - lat1)*degrees_to_radians
+    phi2 = (90.0 - lat2)*degrees_to_radians
+    theta1 = long1*degrees_to_radians
+    theta2 = long2*degrees_to_radians
+    cos = (math.sin(phi1)*math.sin(phi2)*math.cos(theta1 - theta2) +
+           math.cos(phi1)*math.cos(phi2))
+    arc = math.acos(cos)
+    return arc * 6373
 
 
 class CoverageMap:
@@ -26,6 +39,13 @@ class CoverageMap:
 
         gateway = self.gateways[eui][0]
         feature['properties']['marker-symbol'] = gateway['properties']['sym']
+        lat1 = feature.geometry.coordinates[1]
+        lon1 = feature.geometry.coordinates[0]
+        lat2 = gateway.geometry.coordinates[1]
+        lon2 = gateway.geometry.coordinates[0]
+
+        distance = distance_on_km(lat1, lon1, lat2, lon2)
+        feature['properties']['distance'] = "%.1f km" % distance
 
         self.features.append(feature)
         self.all_nodes.append(feature)

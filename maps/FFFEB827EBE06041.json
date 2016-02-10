@@ -27,6 +27,7 @@
             },
             "properties": {
                 "data_rate": "SF7BW125",
+                "distance": "5.5 km",
                 "gateway_eui": "FFFEB827EBE06041",
                 "hash": "e8c02334fa77363988d6bda86148fc2e744824d7",
                 "marker-color": "#addd8e",
@@ -47,6 +48,7 @@
             },
             "properties": {
                 "data_rate": "SF12BW125",
+                "distance": "4.2 km",
                 "gateway_eui": "FFFEB827EBE06041",
                 "hash": "de0fa5023326fc53b676bee448139883ff251606",
                 "marker-color": "#addd8e",
@@ -67,6 +69,7 @@
             },
             "properties": {
                 "data_rate": "SF12BW125",
+                "distance": "3.9 km",
                 "gateway_eui": "FFFEB827EBE06041",
                 "hash": "ffbb7cb1e7b5323c3db08c24ac106b39d31f8370",
                 "marker-color": "#addd8e",
@@ -87,6 +90,7 @@
             },
             "properties": {
                 "data_rate": "SF12BW125",
+                "distance": "4.5 km",
                 "gateway_eui": "FFFEB827EBE06041",
                 "hash": "8f4b1384e379ed745c8dc6382c89076f29712a14",
                 "marker-color": "#d9f0a3",
