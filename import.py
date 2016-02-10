@@ -18,13 +18,16 @@ logger = logging.getLogger(__name__)
 def import_new_features(node_eui, exclude_list):
     coverage = CoverageMap(node_eui)
 
-    for feature in get_new_features(node_eui, exclude_list, coverage.exists):
+    for feature in get_new_features(node_eui, exclude_list):
+        if coverage.exists(feature):
+            logger.info('Found last imported data point, stopping.')
+            break
         coverage.add(feature)
 
     coverage.save_all()
 
 
-def get_new_features(node_eui, exclude_list, already_exists_predicate):
+def get_new_features(node_eui, exclude_list):
     offset = 0
     api_calls = 0
 
@@ -41,9 +44,6 @@ def get_new_features(node_eui, exclude_list, already_exists_predicate):
                     continue
 
                 feature = features.build(data_point)
-                if already_exists_predicate(feature):
-                    logger.info('Found last imported data point, stopping.')
-                    return
 
                 print('.', end='')
                 yield feature
