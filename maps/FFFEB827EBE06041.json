@@ -36,6 +36,66 @@
                 "time": "2016-02-03T18:13:00.709Z"
             },
             "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.543333333333333,
+                    47.39093333333334
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF12BW125",
+                "gateway_eui": "FFFEB827EBE06041",
+                "hash": "de0fa5023326fc53b676bee448139883ff251606",
+                "marker-color": "#addd8e",
+                "marker-symbol": "d",
+                "rssi": -113,
+                "snr": -13.2,
+                "time": "2016-02-04T07:46:26.613Z"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.544166666666667,
+                    47.3879
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF12BW125",
+                "gateway_eui": "FFFEB827EBE06041",
+                "hash": "ffbb7cb1e7b5323c3db08c24ac106b39d31f8370",
+                "marker-color": "#addd8e",
+                "marker-symbol": "d",
+                "rssi": -114,
+                "snr": -12.2,
+                "time": "2016-02-04T07:45:26.607Z"
+            },
+            "type": "Feature"
+        },
+        {
+            "geometry": {
+                "coordinates": [
+                    8.530666666666667,
+                    47.397083333333335
+                ],
+                "type": "Point"
+            },
+            "properties": {
+                "data_rate": "SF12BW125",
+                "gateway_eui": "FFFEB827EBE06041",
+                "hash": "8f4b1384e379ed745c8dc6382c89076f29712a14",
+                "marker-color": "#d9f0a3",
+                "marker-symbol": "d",
+                "rssi": -117,
+                "snr": -15.0,
+                "time": "2016-02-02T16:29:24.477Z"
+            },
+            "type": "Feature"
         }
     ],
     "type": "FeatureCollection"

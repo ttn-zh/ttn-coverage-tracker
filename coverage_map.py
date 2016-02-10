@@ -9,6 +9,12 @@ class CoverageMap:
         self.hashes = set([x['properties']['hash'] for x in self.features])
         self.gateways = {}
 
+        known_gateways = set([x['properties']['eui']
+                             for x in self.all_nodes
+                             if 'eui' in x['properties']])
+        for eui in known_gateways:
+            self.gateway_seen(eui)
+
     def exists(self, data):
         return data['properties']['hash'] in self.hashes
 
@@ -42,7 +48,9 @@ class CoverageMap:
         return True if len(self.gateways[eui]) > 0 else False
 
     def add_gateway(self, feature):
+        eui = feature['properties']['eui']
         feature['properties']['sym'] = chr(len(self.gateways) + 97)
-        self.gateways[feature['properties']['eui']] = features.build_collection([feature]).features
+
+        self.gateways[eui] = features.build_collection([feature]).features
         self.all_nodes.append(feature)
         self.features.append(feature)
