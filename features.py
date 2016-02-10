@@ -18,21 +18,25 @@ def build(data_point):
 
     # Add styling features
     # https://help.github.com/articles/mapping-geojson-files-on-github/
-    props['marker-symbol'] = get_marker_symbol(data_point)
     props['marker-color'] = get_marker_color(data_point)
 
     return geojson.Feature(geometry=point, properties=props)
 
 
-def get_marker_symbol(data_point):
-    eui = data_point['gateway_eui']
-    if eui in gateway_marker_symbols:
-        return gateway_marker_symbols[eui]
+def build_gateway(status_packet):
+    coords = (status_packet["longitude"], status_packet["latitude"])
+    point = geojson.Point(coords)
+    props = dict(hash=status_packet['eui'], eui=status_packet['eui'])
 
-    symbol = chr(len(gateway_marker_symbols) + 97)
-    gateway_marker_symbols[eui] = symbol
+    # Add styling features
+    props['marker-symbol'] = 'rocket'
+    props['marker-color'] = '#990000'
 
-    return symbol
+    return geojson.Feature(geometry=point, properties=props)
+
+
+def build_collection(features):
+    return geojson.FeatureCollection(features)
 
 
 def get_marker_color(data_point):

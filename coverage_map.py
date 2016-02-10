@@ -16,7 +16,10 @@ class CoverageMap:
         eui = feature['properties']['gateway_eui']
 
         if eui not in self.gateways:
-            self.gateways[eui] = features.load('maps/%s.json' % eui)
+            raise ValueError('Unexpected error, gateway not found')
+
+        gateway = self.gateways[eui][0]
+        feature['properties']['marker-symbol'] = gateway['properties']['sym']
 
         self.features.append(feature)
         self.all_nodes.append(feature)
@@ -29,3 +32,17 @@ class CoverageMap:
 
         for eui in self.gateways:
             features.dump('maps/%s.json' % eui, self.gateways[eui])
+
+    def gateway_seen(self, eui):
+        if eui in self.gateways:
+            return True
+
+        self.gateways[eui] = features.load('maps/%s.json' % eui)
+
+        return True if len(self.gateways[eui]) > 0 else False
+
+    def add_gateway(self, feature):
+        feature['properties']['sym'] = chr(len(self.gateways) + 97)
+        self.gateways[feature['properties']['eui']] = features.build_collection([feature]).features
+        self.all_nodes.append(feature)
+        self.features.append(feature)

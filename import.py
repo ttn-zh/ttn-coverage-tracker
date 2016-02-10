@@ -22,6 +22,13 @@ def import_new_features(node_eui, exclude_list):
         if coverage.exists(feature):
             logger.info('Found last imported data point, stopping.')
             break
+
+        gateway_eui = feature['properties']['gateway_eui']
+        if not coverage.gateway_seen(gateway_eui):
+            gateway_details = rest_api.fetch_gateway(gateway_eui)
+            gateway = features.build_gateway(gateway_details)
+            coverage.add_gateway(gateway)
+
         coverage.add(feature)
 
     coverage.save_all()
