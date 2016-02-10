@@ -43,8 +43,8 @@ class CoverageMap:
         lon1 = feature.geometry.coordinates[0]
         lat2 = gateway.geometry.coordinates[1]
         lon2 = gateway.geometry.coordinates[0]
-
         distance = distance_on_km(lat1, lon1, lat2, lon2)
+
         feature['properties']['distance'] = "%.1f km" % distance
 
         self.features.append(feature)
